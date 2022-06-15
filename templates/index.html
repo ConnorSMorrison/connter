@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    </head>
+    <body>
+
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+
+        <form action="/" method="post" id="post-form">
+            <input placeholder="Name" name="name" autocomplete="off">
+            <input placeholder="Post Content" name="post" autocomplete="off" id="post-content-input">
+            <input type="submit" value="Submit" id="submit-form">
+        </form>
+
+        {% for post in posts %}
+            <div id="post-card">
+                <div id="post-name"><h3>{{post[1]}}</h3></div>
+                <div id="post-content"><p>{{post[2]}}</p></div>
+                <div id="post-creation-date"><p>Created: {{post[3]}}</p></div>
+            </div>
+        {% endfor %}
+
+        <script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
+
+        <script src="{{ url_for('static', filename='javascript/bootstrap.min.js') }}"></script>
+    </body>
+</html>
