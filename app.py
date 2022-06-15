@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, flash
 from models import get_posts, create_post
 from flask_cors import CORS
-from datetime import date
 from datetime import datetime
 from better_profanity import profanity
 
