@@ -20,9 +20,14 @@ def index():
         name = profanity.censor(request.form.get("name"))
         post = profanity.censor(request.form.get("post"))
         if name != "" and post != "":
+            current_id = int(open("id.txt", "r").read())
             creation_date = datetime.now().strftime("%m/%d/%y %H:%M:%S")
-            create_post(name, post, creation_date)
+            create_post(current_id, name, post, creation_date)
             flash("New post created")
+            current_id += 1
+            with open("id.txt", "w") as fl:
+                fl.write(str(current_id + 1))
+                fl.close()
         else:
             flash("Missing name or content for post")
 

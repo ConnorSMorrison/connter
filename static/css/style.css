@@ -32,6 +32,12 @@
     margin-top: 20px;
 }
 
+#post-id {
+    top: 0;
+    left: 0;
+    font-size: 8px;
+}
+
 #post-name {
     text-align: center;
     font-size: 2em;

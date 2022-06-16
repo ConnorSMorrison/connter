@@ -3,6 +3,8 @@
     <head>
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+        <title>Connter - A Simple Social Media</title>
+        <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/favicon.ico')}}"
     </head>
     <body>
 
@@ -21,9 +23,10 @@
 
         {% for post in posts %}
             <div id="post-card">
-                <div id="post-name"><h3>{{post[1]}}</h3></div>
-                <div id="post-content"><p>{{post[2]}}</p></div>
-                <div id="post-creation-date"><p>Created: {{post[3]}}</p></div>
+                <div id="post-id"><p>Post ID: {{post["id"]}}</p></div>
+                <div id="post-name"><h3>{{post["name"]}}</h3></div>
+                <div id="post-content"><p>{{post["content"]}}</p></div>
+                <div id="post-creation-date"><p>Created: {{post["creation_date"]}}</p></div>
             </div>
         {% endfor %}
 

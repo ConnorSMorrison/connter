@@ -1,18 +1,12 @@
-import sqlite3 as sql
 from os import path
+from tinydb import TinyDB
 
 ROOT = path.dirname(path.relpath(__file__))
 
-def create_post(name, content, creation_date):
-    connection = sql.connect(path.join(ROOT, "database.db"))
-    cursor = connection.cursor()
-    cursor.execute("insert into posts (name, content, creationdate) values(?, ?, ?)", (name, content, creation_date))
-    connection.commit()
-    connection.close()
+db = TinyDB(path.join(ROOT, "db.json"))
+
+def create_post(id, name, content, creation_date):    
+    db.insert({"id": id, "name": name, "content": content, "creation_date": creation_date})
 
 def get_posts():
-    connection = sql.connect(path.join(ROOT, "database.db"))
-    cursor = connection.cursor()
-    cursor.execute("select * from posts")
-    posts = cursor.fetchall()
-    return posts
+    return db.all()
